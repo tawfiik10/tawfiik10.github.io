@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# v1.0 - Tawfiik Host
+
+CACHE:
+jb.html
+bg.jpeg
+goldhen.bin
+
+NETWORK:
+*
