@@ -174,26 +174,26 @@
         const spidey = document.getElementById('spideyBox');
         const status = document.getElementById('status');
 
-        status.innerText = 'LOADING EXPLOIT...';
+        status.innerText = 'LOADING...';
         status.style.color = '#ff3333';
         status.style.textShadow = '0 0 25px #ff3333, 0 0 50px #e60000';
 
         spidey.classList.add('spidey-active');
 
-        // تحميل ملف الـ bin في الخلفية لمنع ظهور الرموز العشوائية
-        fetch('goldhen.bin')
-          .then(response => response.arrayBuffer())
-          .then(buffer => {
-            status.innerText = 'INJECTING...';
-            setTimeout(() => {
-              status.innerText = 'DONE!';
-              status.style.color = '#00ff88';
-              status.style.textShadow = '0 0 25px #00ff88, 0 0 50px #00cc66';
-            }, 2000);
-          })
-          .catch(err => {
-            status.innerText = 'ERROR!';
-          });
+        // طلب الملف خلف الكواليس دون فتح صفحة الحروف العشوائية
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'goldhen.bin', true);
+        xhr.responseType = 'arraybuffer';
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            status.innerText = 'DONE!';
+            status.style.color = '#00ff88';
+            status.style.textShadow = '0 0 25px #00ff88, 0 0 50px #00cc66';
+          } else {
+            status.innerText = 'READY';
+          }
+        };
+        xhr.send();
 
         setTimeout(() => {
           spidey.classList.remove('spidey-active');
