@@ -1,167 +1,199 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TAWFIIK - لصيانة البلايستيشن</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Tajawal:wght@500;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>TAWFIIK HOST - PS4 JB 13.2</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, sans-serif; }
+    
     body {
-      background: #090a0f;
+      background: radial-gradient(circle at center, #10141d 0%, #05070a 100%);
       color: #fff;
-      font-family: 'Cairo', 'Tajawal', sans-serif;
       min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
+      justify-content: space-between;
       padding: 20px;
       overflow-x: hidden;
+      position: relative;
     }
+
+    header { text-align: center; margin-top: 10px; z-index: 2; }
+    header h1 {
+      font-size: 3rem;
+      color: #00d4ff;
+      text-shadow: 0 0 20px #00d4ff, 0 0 40px #0052d4;
+      letter-spacing: 2px;
+    }
+    header p { font-size: 1.2rem; color: #a0aec0; }
+
     .container {
       width: 100%;
-      max-width: 1100px;
-      background: radial-gradient(circle at center, #16192b 0%, #08090e 100%);
-      border: 3px solid #00439c;
-      border-radius: 24px;
-      box-shadow: 0 0 50px rgba(0, 112, 209, 0.3), inset 0 0 30px rgba(0, 0, 0, 0.8);
-      padding: 40px;
-      position: relative;
+      max-width: 850px;
+      background: rgba(15, 20, 30, 0.85);
+      border: 2px solid rgba(0, 212, 255, 0.4);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 40px rgba(0, 212, 255, 0.2);
+      backdrop-filter: blur(10px);
       text-align: center;
+      margin: 20px 0;
+      z-index: 2;
     }
-    .header-tag {
-      font-size: 1.1rem;
-      letter-spacing: 2px;
-      color: #00f0ff;
-      text-transform: uppercase;
+
+    .status-box {
+      background: #090c10;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 1.2rem;
+      color: #58a6ff;
+      margin-bottom: 25px;
+      transition: all 0.5s ease;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #e60000, #ff4d4d);
+      color: #fff;
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.3rem;
       font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .main-title {
-      font-size: 4rem;
-      font-weight: 900;
-      color: #fff;
-      text-shadow: 0 0 20px #0070d1, 0 0 40px #0070d1;
-      margin-bottom: 10px;
-    }
-    .sub-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #00f0ff;
-      margin-bottom: 15px;
-    }
-    .badge {
-      display: inline-block;
-      background: linear-gradient(90deg, #0070d1, #00d2ff);
-      color: #fff;
-      padding: 8px 30px;
       border-radius: 50px;
-      font-size: 1.3rem;
-      font-weight: bold;
-      margin-bottom: 35px;
-      box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
-    }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-    .service-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 240, 255, 0.2);
-      border-radius: 16px;
-      padding: 25px 15px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(230, 0, 0, 0.6);
       transition: all 0.3s ease;
+      margin: 10px;
     }
-    .service-card:hover {
-      transform: translateY(-5px);
-      border-color: #00f0ff;
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
-    }
-    .service-card i {
-      font-size: 2.5rem;
-      color: #00f0ff;
-      margin-bottom: 15px;
-    }
-    .service-card h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
-    .contact-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-      background: #25d366;
-      color: #fff;
-      text-decoration: none;
-      font-size: 2rem;
-      font-weight: 900;
-      padding: 15px 40px;
-      border-radius: 60px;
-      box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
-      transition: all 0.3s ease;
-      margin-bottom: 30px;
-    }
-    .contact-btn:hover {
+    .btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 40px rgba(37, 211, 102, 0.8);
+      box-shadow: 0 0 35px rgba(255, 77, 77, 0.9);
     }
-    .ps-symbols {
+
+    /* أنيميشن سبايدرمان والشبكة */
+    .spidey-container {
+      position: fixed;
+      top: -350px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      font-size: 2.2rem;
-      margin-top: 10px;
+      flex-direction: column;
+      align-items: center;
+      z-index: 999;
+      pointer-events: none;
+      transition: top 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
-    .ps-symbols span:nth-child(1) { color: #00f0ff; }
-    .ps-symbols span:nth-child(2) { color: #ff4d4d; }
-    .ps-symbols span:nth-child(3) { color: #9b51e0; }
-    .ps-symbols span:nth-child(4) { color: #2ea44f; }
+
+    .web-line {
+      width: 3px;
+      height: 180px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+      box-shadow: 0 0 8px #fff;
+    }
+
+    .spidey-card {
+      background: #111;
+      border: 3px solid #e60000;
+      border-radius: 20px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 30px #e60000, inset 0 0 15px #fff;
+      position: relative;
+    }
+
+    .spidey-card img {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid #fff;
+    }
+
+    .zamalek-badge {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: #fff;
+      color: #e60000;
+      font-weight: 900;
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 10px;
+      border: 1px solid #e60000;
+    }
+
+    /* الحركة عند التفعيل */
+    .spidey-active {
+      top: 50px !important;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #8b949e;
+      z-index: 2;
+    }
+    .whatsapp-link {
+      color: #25d366;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1.3rem;
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="header-tag">PlayStation Service Center</div>
-    <h1 class="main-title">TAWFIIK</h1>
-    <div class="sub-title">لصيانة البلايستيشن</div>
-    <div class="badge">خبرة .. دقة .. ثقة</div>
-
-    <div class="services-grid">
-      <div class="service-card">
-        <i class="fa-solid fa-cogs"></i>
-        <h3>صيانة شاملة</h3>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-wrench"></i>
-        <h3>إصلاح الأعطال</h3>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-broom"></i>
-        <h3>تنظيف داخلي وتغيير معجون حراري</h3>
-      </div>
-      <div class="service-card">
-        <i class="fa-solid fa-rotate"></i>
-        <h3>تحديث الأنظمة</h3>
-      </div>
-    </div>
-
-    <a href="https://wa.me/201011457707" class="contact-btn" target="_blank">
-      <i class="fa-brands fa-whatsapp"></i>
-      <span>01011457707</span>
-    </a>
-
-    <div class="ps-symbols">
-      <span>▲</span>
-      <span>◯</span>
-      <span>✕</span>
-      <span>▢</span>
+  <!-- أنيميشن سبايدرمان المتدلي بالشبكة -->
+  <div class="spidey-container" id="spideyBox">
+    <div class="web-line"></div>
+    <div class="spidey-card">
+      <img src="https://images.unsplash.com/photo-1604200213928-ba3cf4fc8436?w=400&auto=format&fit=crop" alt="Spider-Man">
+      <div class="zamalek-badge">Zamalek SC</div>
     </div>
   </div>
 
+  <header>
+    <h1>TAWFIIK HOST</h1>
+    <p>صفحة تهكير PS4 - الإصدار 13.2</p>
+  </header>
+
+  <div class="container">
+    <div class="status-box" id="status">
+      حالة الثغرة: جاهز للتشغيل... اضغط على "تفعيل GoldHEN"
+    </div>
+
+    <button class="btn" onclick="triggerSpiderHEN()">🕷️ تفعيل GoldHEN 13.2</button>
+  </div>
+
+  <footer>
+    للدعم والتواصل واتساب: 
+    <a class="whatsapp-link" href="https://wa.me/201011457707" target="_blank">01011457707</a>
+  </footer>
+
+  <script>
+    function triggerSpiderHEN() {
+      const spidey = document.getElementById('spideyBox');
+      const status = document.getElementById('status');
+
+      status.innerText = '🕷️ جاري إرسال الشبكة وتفعيل الـ GoldHEN...';
+      status.style.borderColor = '#e60000';
+      status.style.boxShadow = '0 0 20px rgba(230, 0, 0, 0.5)';
+
+      spidey.classList.add('spidey-active');
+
+      setTimeout(() => {
+        status.innerText = '✅ تم تفعيل GoldHEN بنجاح! استمتع بالألعاب';
+        status.style.color = '#25d366';
+        status.style.borderColor = '#25d366';
+        status.style.boxShadow = '0 0 25px rgba(37, 211, 102, 0.6)';
+      }, 1500);
+
+      setTimeout(() => {
+        spidey.classList.remove('spidey-active');
+      }, 5000);
+    }
+  </script>
 </body>
 </html>
