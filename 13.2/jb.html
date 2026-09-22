@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" manifest="cache.manifest">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -174,30 +174,15 @@
       const spidey = document.getElementById('spideyBox');
       const status = document.getElementById('status');
 
-      status.innerText = 'LOADING GOLDHEN...';
+      status.innerText = 'LAUNCHING GOLDHEN...';
       status.style.color = '#ff3333';
       status.style.textShadow = '0 0 25px #ff3333, 0 0 50px #e60000';
 
       spidey.classList.add('spidey-active');
 
       setTimeout(() => {
-        // توجيه المتصفح لتحميل واستدعاء ملف الـ Payload الخاص بـ GoldHEN
-        if (typeof PLS !== 'undefined') {
-          PLS();
-        } else {
-          location.href = "goldhen.bin";
-        }
-      }, 1000);
-
-      setTimeout(() => {
-        status.innerText = 'DONE!';
-        status.style.color = '#00ff88';
-        status.style.textShadow = '0 0 25px #00ff88, 0 0 50px #00cc66';
-      }, 3000);
-
-      setTimeout(() => {
-        spidey.classList.remove('spidey-active');
-      }, 5000);
+        window.location.href = "goldhen.bin";
+      }, 1500);
     }
   </script>
 </body>
