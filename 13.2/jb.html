@@ -169,21 +169,36 @@
     <a class="whatsapp-link" href="https://wa.me/201011457707" target="_blank">01011457707</a>
   </footer>
 
-  <script>
-    function triggerSpiderHEN() {
-      const spidey = document.getElementById('spideyBox');
-      const status = document.getElementById('status');
+<script>
+      function triggerSpiderHEN() {
+        const spidey = document.getElementById('spideyBox');
+        const status = document.getElementById('status');
 
-      status.innerText = 'LAUNCHING GOLDHEN...';
-      status.style.color = '#ff3333';
-      status.style.textShadow = '0 0 25px #ff3333, 0 0 50px #e60000';
+        status.innerText = 'LOADING EXPLOIT...';
+        status.style.color = '#ff3333';
+        status.style.textShadow = '0 0 25px #ff3333, 0 0 50px #e60000';
 
-      spidey.classList.add('spidey-active');
+        spidey.classList.add('spidey-active');
 
-      setTimeout(() => {
-        window.location.href = "goldhen.bin";
-      }, 1500);
-    }
-  </script>
+        // تحميل ملف الـ bin في الخلفية لمنع ظهور الرموز العشوائية
+        fetch('goldhen.bin')
+          .then(response => response.arrayBuffer())
+          .then(buffer => {
+            status.innerText = 'INJECTING...';
+            setTimeout(() => {
+              status.innerText = 'DONE!';
+              status.style.color = '#00ff88';
+              status.style.textShadow = '0 0 25px #00ff88, 0 0 50px #00cc66';
+            }, 2000);
+          })
+          .catch(err => {
+            status.innerText = 'ERROR!';
+          });
+
+        setTimeout(() => {
+          spidey.classList.remove('spidey-active');
+        }, 5000);
+      }
+    </script>
 </body>
 </html>
